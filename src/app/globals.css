@@ -1,33 +1,89 @@
+/* app/globals.css (or your main CSS file) */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    /* ... (your existing FocoPet and ShadCN CSS Variables) ... */
+    --foco-blue: 0 123 255;
+    --foco-yellow: 250 204 21;
+    --foco-orange: 249 115 22;
+    --foco-dark: 30 41 59;
+    --foco-light-gray: 243 244 246;
+    --foco-pink: 251 207 232;
+    --foco-text-default: 51 65 85;
+    --foco-nav-dark: 17 24 39;
+
+    /* Light text color for outlined hero text */
+    --hero-outline-text-fill: 220 13% 69%; /* Approx. light slate gray/blue from image */
+
+
+    --background: 0 0% 100%;
+    --foreground: var(--foco-text-default);
+    --primary: var(--foco-orange);
+    --primary-foreground: 255 255 255;
+    --secondary: var(--foco-dark);
+    --secondary-foreground: 255 255 255;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: var(--foco-dark);
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: var(--foco-orange);
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    /* ... (your existing dark theme variables) ... */
+    --background: var(--foco-dark);
+    --foreground: 240 5% 95%;
+    --primary: var(--foco-orange);
+    --primary-foreground: 17 24 39;
+    --secondary: 30 41 59;
+    --secondary-foreground: 240 5% 95%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 240 5% 95%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 3.7% 25%;
+    --input: 240 3.7% 25%;
+    --ring: var(--foco-orange);
+    --hero-outline-text-fill: 220 10% 85%; /* Lighter for dark mode if needed */
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+.hero-text-solid {
+  @apply text-foco-dark; /* For solid dark text parts */
+}
+
+.hero-text-outlined {
+  color: hsl(var(--hero-outline-text-fill)); /* Lighter fill color */
+  -webkit-text-stroke: 1px hsl(var(--foco-dark)); /* Outline color */
+  /* Adjust stroke width based on font size and preference */
+}
+@media (min-width: 640px) { /* sm */
+  .hero-text-outlined {
+    -webkit-text-stroke-width: 1.5px;
+  }
+}
+@media (min-width: 1024px) { /* lg */
+  .hero-text-outlined {
+    -webkit-text-stroke-width: 1.5px; /* Keep it crisp, 2.5px might be too thick */
   }
 }
