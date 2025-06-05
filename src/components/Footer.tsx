@@ -5,16 +5,16 @@ import { FaLinkedinIn, FaFacebookF, FaInstagram, FaTwitter } from 'react-icons/f
 
 const navigationLinks = [
   { href: '/', label: 'Home' },
-  { href: '/about', label: 'About Us' },
-  { href: '/products', label: 'All Products' },
-  { href: '/blog', label: 'Our Blog' },
+  { href: '/', label: 'About Us' },
+  { href: '/', label: 'All Products' },
+  { href: '/', label: 'Our Blog' },
 ];
 
 const helpLinks = [
-  { href: '/support', label: 'Customer Support' },
-  { href: '/faq', label: 'FAQs' },
-  { href: '/terms', label: 'Terms & Conditions' },
-  { href: '/testimonials', label: 'Testimonials' },
+  { href: '/', label: 'Customer Support' },
+  { href: '/', label: 'FAQs' },
+  { href: '/', label: 'Terms & Conditions' },
+  { href: '/', label: 'Testimonials' },
 ];
 
 const socialLinks = [
@@ -25,9 +25,9 @@ const socialLinks = [
 ];
 
 const legalLinks = [
-    { href: '/terms', label: 'Terms & Condition' },
-    { href: '/privacy', label: 'Privacy Policy' },
-    { href: '/contact', label: 'Contact Us' },
+    { href: '/', label: 'Terms & Condition' },
+    { href: '/', label: 'Privacy Policy' },
+    { href: '/', label: 'Contact Us' },
 ];
 
 

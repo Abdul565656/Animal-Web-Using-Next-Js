@@ -4,13 +4,11 @@ import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRightIcon, ShoppingCartIcon, StarIcon } from '@heroicons/react/24/solid';
-import { fetchAllDogsFromAPI, DOG_SIZE_FILTERS } from '../api/dogsApi';
+import { fetchAllDogsFromAPI } from '../api/dogsApi';
 import type { Dog } from '../../types';
 
 const PopularDogsDisplay = () => {
   const [allFetchedDogs, setAllFetchedDogs] = useState<Dog[]>([]);
-  const [displayedDogs, setDisplayedDogs] = useState<Dog[]>([]);
-  const [activeFilter, setActiveFilter] = useState<string>(DOG_SIZE_FILTERS.ALL);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -19,9 +17,9 @@ const PopularDogsDisplay = () => {
       setIsLoading(true);
       setError(null);
       try {
-        const dogs = await fetchAllDogsFromAPI(1, 30); // Fetch a batch
+        const dogs = await fetchAllDogsFromAPI(1, 30);
         if (Array.isArray(dogs)) {
-          setAllFetchedDogs(dogs);
+          setAllFetchedDogs(dogs.slice(0, 6));
         } else {
           setAllFetchedDogs([]);
           setError("Failed to load dog data in expected format.");
@@ -36,18 +34,6 @@ const PopularDogsDisplay = () => {
     loadDogs();
   }, []);
 
-  useEffect(() => {
-    let filtered = allFetchedDogs;
-    if (activeFilter !== DOG_SIZE_FILTERS.ALL) {
-      filtered = allFetchedDogs.filter(dog => dog.sizeCategory === activeFilter);
-    }
-  
-    setDisplayedDogs(filtered.slice(0, 6));
-  }, [activeFilter, allFetchedDogs]);
-
-  const filterButtonLabels = ["All Dogs", "Dog Food", "Bird Food", "Rabbit Food", "Fish Food", "Cat Food"];
-
-
   if (isLoading && allFetchedDogs.length === 0) {
     return <section className="py-12 text-center text-slate-500">Loading popular dogs...</section>;
   }
@@ -56,7 +42,7 @@ const PopularDogsDisplay = () => {
   }
 
   return (
-    <section className="py-12 md:py-16 bg-gray-50"> 
+    <section className="py-12 md:py-16 bg-gray-50">
       <div className="container mx-auto px-4">
         <div className="flex flex-col sm:flex-row justify-center space-x-[600px] items-center mb-8 md:mb-10">
           <h2 className="text-2xl md:text-3xl font-bold text-slate-800 text-center sm:text-left mb-4 sm:mb-0">
@@ -70,10 +56,10 @@ const PopularDogsDisplay = () => {
           </Link>
         </div>
 
-        {displayedDogs.length > 0 ? (
-          <div className="mx-auto max-w-5xl"> 
+        {allFetchedDogs.length > 0 ? (
+          <div className="mx-auto max-w-5xl">
             <div className="grid grid-cols-1 min-[500px]:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-5 md:gap-6">
-              {displayedDogs.map((dog) => {
+              {allFetchedDogs.map((dog) => {
                 const imageUrl = dog.image || '/images/placeholders/dog_placeholder.png';
                 const productCategory = dog.breed_group || dog.origin || "Dog Supplies";
 
@@ -93,12 +79,12 @@ const PopularDogsDisplay = () => {
                           fill
                           style={{ objectFit: 'contain' }}
                           className="group-hover:scale-105 transition-transform duration-300"
-                          sizes="(max-width: 500px) 90vw, (max-width: 768px) 45vw, 30vw" // Adjust sizes
+                          sizes="(max-width: 500px) 90vw, (max-width: 768px) 45vw, 30vw"
                         />
                       </div>
                     </Link>
 
-                    <div className="p-3 flex flex-col flex-grow"> 
+                    <div className="p-3 flex flex-col flex-grow">
                       <p className="text-[11px] text-gray-500 mb-0.5 capitalize truncate" title={productCategory}>
                         {productCategory}
                       </p>
@@ -130,9 +116,9 @@ const PopularDogsDisplay = () => {
                       </div>
 
                       {dog.discountInfo && dog.price && (
-                          <span className="text-[10px] text-gray-400 line-through ml-0.5 mt-0.5 block"> 
-                            ${(dog.price / (1 - parseFloat(dog.discountInfo.replace('% OFF','')) / 100)).toFixed(2)}
-                          </span>
+                        <span className="text-[10px] text-gray-400 line-through ml-0.5 mt-0.5 block">
+                          ${(dog.price / (1 - parseFloat(dog.discountInfo.replace('% OFF', '')) / 100)).toFixed(2)}
+                        </span>
                       )}
                     </div>
                   </div>

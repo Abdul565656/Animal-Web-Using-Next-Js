@@ -2,8 +2,8 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowRightIcon } from '@heroicons/react/24/outline';
-import { fetchCatBreeds } from '../api/catsApi'; 
-import type { CatBreed } from '../../types';       
+import { fetchCatBreeds } from '../api/catsApi';
+import type { CatBreed } from '../../types';
 
 const BrowseCatBreedsGrid = async () => {
   let catBreeds: CatBreed[] = [];
@@ -13,16 +13,16 @@ const BrowseCatBreedsGrid = async () => {
     console.error("Error fetching cat breeds for BrowseCatBreedsGrid:", error);
   }
 
-  const sectionTitle = "Pet Product Category";
-  const sectionSubtitle = "Welcome To FocoPet, Your Ultimate Online Pet Store In India! At FocoPet, We're More Than Just A Pet Shop Online - We're Your Partners In Pet Parenting.";
+  const sectionTitle = "Discover Cat Breeds";
+  const sectionSubtitle = "Explore a variety of fascinating cat breeds. Learn more about their characteristics and find your perfect feline companion.";
   const seeAllLink = "/cats";
-  const seeAllText = "See All Category";
+  const seeAllText = "See All Breeds";
 
   return (
     <section className="py-12 md:py-16 bg-white sm:bg-gray-50">
       <div className="container mx-auto px-4">
-        <div className="flex flex-col sm:flex-row justify-center space-x-40 items-center mb-8 md:mb-10">
-          <div className="text-center sm:text-left">
+        <div className="flex flex-col sm:flex-row justify-between items-center mb-8 md:mb-10">
+          <div className="text-center sm:text-left mb-6 sm:mb-0">
             <h2 className="text-3xl md:text-4xl font-extrabold text-slate-800 mb-2">
               {sectionTitle}
             </h2>
@@ -32,18 +32,15 @@ const BrowseCatBreedsGrid = async () => {
           </div>
           <Link
             href={seeAllLink}
-            className="mt-4 sm:mt-0 bg-orange-500 text-white text-sm font-semibold py-2.5 px-5 rounded-3xl hover:bg-orange-600 transition-colors duration-200 flex items-center gap-2"
+            className="shrink-0 bg-orange-500 text-white text-sm font-semibold py-2.5 px-5 rounded-3xl hover:bg-orange-600 transition-colors duration-200 flex items-center gap-2"
           >
             {seeAllText}
             <ArrowRightIcon className="w-4 h-4" />
           </Link>
         </div>
-
-        {/* Grid of Cat Breed Cards */}
-        {catBreeds && catBreeds.length > 0 ? (
-          <div className="mx-auto max-w-4xl"> 
+        {catBreeds && catBreeds.length > 0 && (
+          <div className="mx-auto max-w-4xl">
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 md:gap-5">
-            
               {catBreeds.map((cat) => {
                 const imageUrl = cat.image || '/images/placeholders/cat_placeholder.png';
                 return (
@@ -64,7 +61,7 @@ const BrowseCatBreedsGrid = async () => {
                         fill
                         style={{ objectFit: 'contain' }}
                         className="group-hover:scale-105 transition-transform duration-200"
-                        sizes="(max-width: 640px) 45vw, (max-width: 1024px) 30vw, 20vw" 
+                        sizes="(max-width: 640px) 45vw, (max-width: 768px) 30vw, 20vw"
                       />
                     </div>
                   </Link>
@@ -72,12 +69,8 @@ const BrowseCatBreedsGrid = async () => {
               })}
             </div>
           </div>
-        ) : (
-          <p className="text-center text-slate-500 py-10">
-            Could not load cat breeds at this time.
-          </p>
-        )}
-      </div>
+        )}      
+        </div>
     </section>
   );
 };

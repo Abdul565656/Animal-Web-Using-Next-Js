@@ -1,36 +1,97 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<h1 align="center">🐾 Animal Web App</h1>
 
-## Getting Started
+<p align="center">
+  A visually engaging and responsive web application to explore <b>Dog</b> and <b>Cat</b> breeds with elegant UI, breed details, and product cards.
+</p>
 
-First, run the development server:
+<p align="center">
+  <img src="https://img.shields.io/badge/Next.js-13+-black?logo=next.js" />
+  <img src="https://img.shields.io/badge/TypeScript-Strict-blue?logo=typescript" />
+  <img src="https://img.shields.io/badge/TailwindCSS-3.x-06B6D4?logo=tailwindcss" />
+  <img src="https://img.shields.io/badge/Made%20With-❤️-red" />
+</p>
+
+---
+
+## ✨ Overview
+
+This project is a modern pet breed explorer showcasing cats and dogs with dynamic cards, breed traits, origin, and more — all with smooth animations and responsive UI.
+
+> Ideal for portfolios, ecommerce mockups, animal lovers, or pet startups.
+
+---
+
+## 📸 Screenshots
+
+| Home Page | Category View | Dog Cards |
+|----------|---------------|-----------|
+| ![Home](./images/readme) | ![Cats](./public/screenshots/cats.png) | ![Dogs](./public/screenshots/dogs.png) |
+
+---
+
+## 🧰 Tech Stack
+
+| Tech        | Description                         |
+|-------------|-------------------------------------|
+| **Next.js** | React Framework for SSR + Routing   |
+| **TypeScript** | Static typing with rich IntelliSense |
+| **Tailwind CSS** | Utility-first CSS for styling   |
+| **ShadCN/UI** | Pre-built UI components (optional) |
+| **TheCatAPI / TheDogAPI** | Breed data and images    |
+
+---
+
+## 🧠 Features
+
+- ✅ Display dog & cat breeds with cards
+- ✅ Dynamic routing for breed categories
+- ✅ Breed info: name, group, weight, lifespan, origin
+- ✅ Product card section with price, rating, badges
+- ✅ Fully responsive (mobile-first)
+- ✅ SEO-optimized Next.js architecture
+
+---
+
+<summary>📁 Folder Structure</summary>
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+src/
+├── components/         # UI sections like Navbar, Hero, ProductUi
+│   └── ui/             # Buttons, Badges, Cards, etc.
+├── lib/                # Utility functions
+├── app/              # Next.js routes (index.tsx, category.tsx, etc.)
+├── public/             # Static assets (images)
+├── types/              # All shared interfaces (Dog, CatBreed, etc.)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+---
 
-## Learn More
+## 📦 Type Definitions (Simplified)
 
-To learn more about Next.js, take a look at the following resources:
+ts
+**export interface Dog {
+  id: string | number;
+  name: string;
+  image?: string;
+  weight?: { imperial: string; metric: string };
+  height?: { imperial: string; metric: string };
+  breed_group?: string;
+  origin?: string;
+  life_span?: string;
+  temperament?: string;
+  price?: number;
+  rating?: number;
+  isBestSeller?: boolean;
+  discountInfo?: string;
+}
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+export interface CatBreed {
+  id: string | number;
+  name: string;
+  image?: string;
+  weight?: { imperial: string; metric: string };
+  origin?: string;
+  temperament?: string;
+  description?: string;
+}

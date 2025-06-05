@@ -27,8 +27,7 @@ const HeroSectionFocoPetMatched = () => {
           <div
             className="absolute top-[-5%] sm:top-[-2%] left-[-5%] sm:left-0 
                        w-[45%] sm:w-[40%] md:w-[38%] lg:w-[35%] aspect-[10/12] z-30
-                       drop-shadow-lg transition-transform duration-300 ease-out hover:scale-105"
-          >
+                       drop-shadow-lg transition-transform duration-300 ease-out hover:scale-105">
             <Image src={petImagePaths.parrot} alt="Colorful Parrot" fill style={{ objectFit: 'contain' }} />
           </div>
 
