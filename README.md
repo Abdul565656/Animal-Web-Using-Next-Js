@@ -19,15 +19,6 @@ This project is a modern pet breed explorer showcasing cats and dogs with dynami
 
 > Ideal for portfolios, ecommerce mockups, animal lovers, or pet startups.
 
----
-
-## 📸 Screenshots
-
-| Home Page | Category View | Dog Cards |
-|----------|---------------|-----------|
-| ![Home](./images/readme) | ![Cats](./public/screenshots/cats.png) | ![Dogs](./public/screenshots/dogs.png) |
-
----
 
 ## 🧰 Tech Stack
 
