@@ -1,4 +1,8 @@
-import type { DogsListApiResponse, Dog, ApiDogImage } from '../../types'; 
+import type {
+  RawDogData,
+  DogsListApiResponse,
+  Dog,
+} from '../types'; 
 
 export async function fetchAllDogsFromAPI(page: number = 1, limit: number = 30): Promise<Dog[]> {
   const API_URL = "https://api.freeapi.app/api/v1/public/dogs";
@@ -16,17 +20,17 @@ export async function fetchAllDogsFromAPI(page: number = 1, limit: number = 30):
     }
 
     const apiResponse = await response.json() as DogsListApiResponse;
-    const rawDogs = apiResponse?.data?.data;
+    const rawDogs: RawDogData[] | undefined = apiResponse?.data?.data;
 
     if (!Array.isArray(rawDogs)) {
-      console.error("[fetchAllDogsFromAPI] Fetched list data for dogs is not an array.", apiResponse);
+      console.error("[fetchAllDogsFromAPI] Fetched list data for dogs is not an array or is missing.", apiResponse);
       return [];
     }
 
-    return rawDogs.map((dogData: any): Dog => ({
+    return rawDogs.map((dogData: RawDogData): Dog => ({
       id: dogData.id,
       name: dogData.name,
-      image: (dogData.image as ApiDogImage)?.url,
+      image: typeof dogData.image === 'string' ? dogData.image : dogData.image?.url,
       reference_image_id: dogData.reference_image_id,
       weight: dogData.weight,
       height: dogData.height,
@@ -61,23 +65,23 @@ export async function fetchDogById(dogId: string | number): Promise<Dog | null> 
         console.warn(`[fetchDogById] API returned 404 for dog ID ${dogId}.`);
       } else {
         const errorText = await response.text();
-        console.error(`[fetchDogById] API Error: ${response.status} ${errorText}`);
+        console.error(`[fetchDogById] API Error fetching dog ID ${dogId}: ${response.status} ${errorText}`);
       }
       return null;
     }
 
     const responseData = await response.json();
-    const dogData = responseData?.data?.data || responseData?.data || responseData;
+    const dogData: RawDogData | undefined = responseData?.data?.data || responseData?.data || (responseData && typeof responseData === 'object' && 'id' in responseData ? responseData as RawDogData : undefined);
 
-    if (!dogData || typeof dogData !== 'object' || !dogData.id || !dogData.name) {
-      console.error(`[fetchDogById] Invalid dog data for ID ${dogId}:`, dogData);
+    if (!dogData || typeof dogData.id === 'undefined' || typeof dogData.name === 'undefined') {
+      console.error(`[fetchDogById] Invalid or incomplete dog data structure for ID ${dogId}:`, responseData);
       return null;
     }
 
-    return {
+    const mappedDog: Dog = {
       id: dogData.id,
       name: dogData.name,
-      image: (dogData.image as ApiDogImage)?.url || dogData.image,
+      image: typeof dogData.image === 'string' ? dogData.image : dogData.image?.url,
       description: dogData.description,
       temperament: dogData.temperament,
       origin: dogData.origin,
@@ -88,9 +92,13 @@ export async function fetchDogById(dogId: string | number): Promise<Dog | null> 
       bred_for: dogData.bred_for,
       country_code: dogData.country_code,
       reference_image_id: dogData.reference_image_id,
+      price: parseFloat((Math.random() * 30 + 20).toFixed(2)), 
+      rating: parseFloat((Math.random() * 1 + 4).toFixed(1)),   
     };
+    return mappedDog;
+
   } catch (error) {
-    console.error(`[fetchDogById] Error fetching dog ID ${dogId}:`, error);
+    console.error(`[fetchDogById] General error fetching dog ID ${dogId}:`, error);
     return null;
   }
 }

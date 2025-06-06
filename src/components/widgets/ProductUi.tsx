@@ -2,10 +2,10 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRightIcon, ShoppingCartIcon, StarIcon } from '@heroicons/react/24/solid';
-import { fetchDisplayProducts } from '../api/dogsApi';
+import { fetchDisplayProducts } from '@/api/dogsApi';
 import type { Dog as Product } from '../../types';
 
-const LatestItemsDisplay = async () => {
+const LatestItems = async () => {
   let latestProducts: Product[] = [];
   try {
     latestProducts = await fetchDisplayProducts(3);
@@ -102,4 +102,4 @@ const LatestItemsDisplay = async () => {
   );
 };
 
-export default LatestItemsDisplay;
+export default LatestItems;

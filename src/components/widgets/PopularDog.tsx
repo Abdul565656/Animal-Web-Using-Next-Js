@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRightIcon, ShoppingCartIcon, StarIcon } from '@heroicons/react/24/solid';
-import { fetchAllDogsFromAPI } from '../api/dogsApi';
+import { fetchAllDogsFromAPI } from '@/api/dogsApi';
 import type { Dog } from '../../types';
 
 const PopularDogsDisplay = () => {

@@ -5,7 +5,6 @@
 
 @layer base {
   :root {
-    /* ... (your existing FocoPet and ShadCN CSS Variables) ... */
     --foco-blue: 0 123 255;
     --foco-yellow: 250 204 21;
     --foco-orange: 249 115 22;
@@ -15,8 +14,7 @@
     --foco-text-default: 51 65 85;
     --foco-nav-dark: 17 24 39;
 
-    /* Light text color for outlined hero text */
-    --hero-outline-text-fill: 220 13% 69%; /* Approx. light slate gray/blue from image */
+    --hero-outline-text-fill: 220 13% 69%;
 
 
     --background: 0 0% 100%;
@@ -38,7 +36,6 @@
   }
 
   .dark {
-    /* ... (your existing dark theme variables) ... */
     --background: var(--foco-dark);
     --foreground: 240 5% 95%;
     --primary: var(--foco-orange);
@@ -68,15 +65,19 @@
   }
 }
 
-.hero-text-solid {
-  @apply text-foco-dark; /* For solid dark text parts */
+@layer{
+  .hero-text-solid {
+     color: #0F172A;
+  }
 }
 
 .hero-text-outlined {
-  color: hsl(var(--hero-outline-text-fill)); /* Lighter fill color */
-  -webkit-text-stroke: 1px hsl(var(--foco-dark)); /* Outline color */
-  /* Adjust stroke width based on font size and preference */
+  -webkit-text-stroke: 1px #0F172A;
+  color: transparent;
+  text-stroke: 1px #0F172A; /* Fallback for modern browsers */
 }
+
+
 @media (min-width: 640px) { /* sm */
   .hero-text-outlined {
     -webkit-text-stroke-width: 1.5px;

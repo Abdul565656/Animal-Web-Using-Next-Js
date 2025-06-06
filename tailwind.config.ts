@@ -1,4 +1,3 @@
-// tailwind.config.ts
 import type { Config } from 'tailwindcss'
 
 const config: Config = {
@@ -20,15 +19,16 @@ const config: Config = {
     },
     extend: {
       colors: {
-        // FocoPet Brand Colors
-        'foco-blue': '#007bff', 
-        'foco-yellow': '#facc15', 
+        'foco-blue': '#0F172A',
+        'foco-amber': '#FCD34D', 
         'foco-orange': '#f97316', 
         'foco-dark': '#1e293b',   
         'foco-light-gray': '#f3f4f6', 
         'foco-pink': '#fbcfe8',   
         'foco-text': '#334155',  
         'foco-nav-dark': '#111827', 
+        'foco-light-blue': '#00A9FF', 
+        'foco-stone': '#1C1917' ,
 
      
         border: "hsl(var(--border))", 
