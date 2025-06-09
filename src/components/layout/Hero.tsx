@@ -14,7 +14,6 @@ export default function HeroSection() {
           <span>FocoPet</span>
         </div>
 
-        {/* Animals Section - scrollable on mobile */}
         <div className="mt-24 sm:mt-36 px-4 overflow-x-auto scrollbar-hide">
           <div className="flex justify-start items-end gap-4 w-max mx-auto lg:justify-center">
             {[
@@ -43,7 +42,7 @@ export default function HeroSection() {
             <div key={i} className="flex flex-col items-center space-y-2 flex-shrink-0 w-[100px]">
               <div className="relative w-[60px] h-[60px] sm:w-[80px] sm:h-[80px]">
                 <Image
-                  src="/images/dog hero 1.png"
+                  src="/images/cat hero 1.png"
                   alt="Foco Dog Food"
                   fill
                   className="object-contain"
@@ -68,7 +67,6 @@ export default function HeroSection() {
           <HiMenu className="cursor-pointer lg:hidden" />
         </div>
 
-        {/* Headline & CTA */}
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-foco-dark leading-tight max-w-xl">
           Quality pet food{" "}
           <span className="hero-text-outlined font-dotted">ensures</span> pet well-being
