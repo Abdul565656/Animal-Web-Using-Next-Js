@@ -52,7 +52,7 @@ const BrowseCatBreeds = async () => {
                     src={cat.image || '/images/placeholders/cat_placeholder.png'}
                     alt={cat.name || 'Cat Breed'}
                     fill
-                    style={{ objectFit: 'contain' }}
+                    style={{ objectFit: 'cover' }}
                     className="rounded-full"
                   />
                 </div>

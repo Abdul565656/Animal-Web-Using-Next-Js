@@ -1,3 +1,5 @@
+import { Cat } from "lucide-react";
+
 export interface ApiDogImage {
   id?: string;
   width?: number;
