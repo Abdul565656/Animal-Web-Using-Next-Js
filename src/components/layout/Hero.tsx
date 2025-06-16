@@ -28,7 +28,7 @@ export default function HeroSection() {
       return (
         <div
           key={i}
-          className={`relative flex-shrink-0 ${sizeClasses} border-4 border-foco-yellow rounded-lg mb-20 bg-white drop-shadow-lg ${animal.z}`}>
+          className={`relative flex-shrink-0 ${sizeClasses} border-4 border-foco-yellow rounded-lg mb-28 bg-white drop-shadow-lg ${animal.z}`}>
           <Image src={animal.src} alt="Pet" fill className="object-contain" />
         </div>
       );
